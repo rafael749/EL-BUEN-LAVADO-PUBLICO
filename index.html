@@ -1016,8 +1016,8 @@
         /* ===== SCROLL TO TOP ===== */
         .scroll-top {
             position: fixed;
-            bottom: 2.4rem;
-            right: 10rem;
+            bottom: 11.5rem;
+            right: 2.4rem;
             z-index: 999;
             width: 46px;
             height: 46px;
@@ -1047,6 +1047,42 @@
             color: white;
             border-color: var(--blue-600);
             transform: translateY(-2px);
+        }
+
+        /* ===== FLOATING BUBBLES ===== */
+        .bubbles-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(59,130,246,0.08), rgba(59,130,246,0.03));
+            border: 1px solid rgba(59,130,246,0.06);
+            animation: bubble-rise linear infinite;
+        }
+
+        @keyframes bubble-rise {
+            0% {
+                transform: translateX(0) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            70% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateX(var(--drift)) scale(0.6);
+                opacity: 0;
+                bottom: 75vh;
+            }
         }
 
         /* ===== MOBILE NAV ===== */
@@ -1158,6 +1194,16 @@
 </head>
 <body>
 
+    <!-- ===== FLOATING BUBBLES ===== -->
+    <div class="bubbles-container" aria-hidden="true">
+        <div class="bubble" style="width:45px;height:45px;left:8%;animation-duration:22s;animation-delay:0s;--drift:30px;"></div>
+        <div class="bubble" style="width:30px;height:30px;left:25%;animation-duration:28s;animation-delay:4s;--drift:-20px;"></div>
+        <div class="bubble" style="width:55px;height:55px;left:50%;animation-duration:25s;animation-delay:2s;--drift:40px;"></div>
+        <div class="bubble" style="width:35px;height:35px;left:70%;animation-duration:30s;animation-delay:7s;--drift:-35px;"></div>
+        <div class="bubble" style="width:40px;height:40px;left:88%;animation-duration:26s;animation-delay:5s;--drift:25px;"></div>
+        <div class="bubble" style="width:25px;height:25px;left:40%;animation-duration:32s;animation-delay:10s;--drift:-15px;"></div>
+    </div>
+
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
         <div class="container">
@@ -1264,7 +1310,7 @@
 
             <div class="services__grid">
                 <article class="service-card reveal">
-                    <div class="service-card__icon">⚖️</div>
+                    <div class="service-card__icon">🫧</div>
                     <h3 class="service-card__title">Lavado</h3>
                     <p class="service-card__text">Traé tu ropa y la lavamos con productos premium. Rápido, eficiente y al mejor precio del barrio.</p>
                 </article>
@@ -1587,10 +1633,6 @@
 
             <div class="footer__bottom">
                 <p class="footer__copy">© 2026 El Buen Lavado. Todos los derechos reservados.</p>
-                <div class="footer__socials">
-                    <a href="#" class="footer__social" aria-label="Instagram" target="_blank" rel="noopener">📸</a>
-                    <a href="https://wa.me/5491124046070" class="footer__social" aria-label="WhatsApp" target="_blank" rel="noopener">💬</a>
-                </div>
             </div>
         </div>
     </footer>
